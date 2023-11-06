@@ -1,8 +1,8 @@
 package com.project.Classes;
 
 abstract class Funcionario extends Usuario{
-    private int codCargo;
-    private String cargo;
+    protected int codCargo;
+    protected String cargo;
 
     public int getCodCargo() {
         return codCargo;
