@@ -5,10 +5,10 @@ class Professor extends Funcionario{
     protected String areaAtuacao;
 
     public Professor(String titulacao, String areaAtuacao){
-
+        this.titulacao = titulacao;
+        this.areaAtuacao = areaAtuacao;
     }
-
-
+    
     public String getTitulacao() {
         return titulacao;
     }
