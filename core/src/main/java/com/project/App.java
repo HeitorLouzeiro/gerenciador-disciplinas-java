@@ -1,13 +1,17 @@
 package com.project;
 
 /**
- * Hello world!
- *
+ * Classe principal que imprime "Hello World!".
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+public class App {
+
+    /**
+     * Método principal que inicia a aplicação.
+     *
+     * @param args Argumentos da linha de comando. Não são usados neste exemplo.
+     */
+    public static void main(String[] args) {
+        // Imprime "Hello World!" no console.
+        System.out.println("Hello World!");
     }
 }
