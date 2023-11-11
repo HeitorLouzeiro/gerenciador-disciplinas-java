@@ -50,5 +50,7 @@ public class IFPIDAO {
         while (resultSet.next()) {
             System.out.println(resultSet.getString("nome") + " Usuario:" + resultSet.getString("tipoUsuario"));
         }
+        
+        statement.close();
     }
 }

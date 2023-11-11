@@ -56,6 +56,7 @@ public class SecretarioDAO {
             System.out.println(resultSet.getString("nome") + " Usuario:" + resultSet.getString("tipoUsuario"));
 
         }
+        statement.close();
     }
     /**
      * Seleciona um aluno do banco de dados com base no código do usuário.
