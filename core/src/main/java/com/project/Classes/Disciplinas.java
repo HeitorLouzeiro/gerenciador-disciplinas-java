@@ -5,8 +5,9 @@ package com.project.Classes;
  * @author @HeitorLouzeiro
  */
 public class Disciplinas {
-    private int codDisciplinas; // Código da disciplina
+    private int codDisciplina; // Código da disciplina
     private String nomeDisciplina; // Nome da disciplina
+    private int codUsuario; // Código do usuário que é o professor da disciplina
     
     /**
      * Construtor padrão da classe Disciplinas.
@@ -20,18 +21,20 @@ public class Disciplinas {
      * 
      * @return O código da disciplina.
      */
-    public int getCodDisciplinas() {
-        return codDisciplinas;
+    public int getCodDisciplina() {
+        return codDisciplina;
     }
     
     /**
      * Define o código da disciplina.
      * 
-     * @param codDisciplinas O código a ser atribuído à disciplina.
+     * @param codDisciplina O código a ser atribuído à disciplina.
      */
-    public void setCodDisciplinas(int codDisciplinas) {
-        this.codDisciplinas = codDisciplinas;
+    public void setCodDisciplina(int codDisciplina) {
+        this.codDisciplina = codDisciplina;
     }
+
+    
     
     /**
      * Obtém o nome da disciplina.
@@ -49,5 +52,23 @@ public class Disciplinas {
      */
     public void setNomeDisciplina(String nomeDisciplina) {
         this.nomeDisciplina = nomeDisciplina;
+    }
+
+    /**
+     * Obtém o código do Professor.
+     * 
+     * @return O código do Professor.
+     */
+    public int getCodUsuario() {
+        return codUsuario;
+    }
+    
+    /**
+     * Define o código do Professor.
+     * 
+     * @param codUsuario O código a ser atribuído ao usuário.
+     */
+    public void setCodUsuario(int codUsuario) {
+        this.codUsuario = codUsuario;
     }
 }
