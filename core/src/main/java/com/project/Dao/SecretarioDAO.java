@@ -53,7 +53,7 @@ public class SecretarioDAO {
         ResultSet resultSet = statement.executeQuery(sql);
 
         while (resultSet.next()) {
-            System.out.println(resultSet.getString("nome") + " Usuario:" + resultSet.getString("tipoUsuario"));
+            System.out.println("ID: " + resultSet.getString("codUsuario") + " " + resultSet.getString("nome") + " Usuario:" + resultSet.getString("tipoUsuario"));
 
         }
         statement.close();

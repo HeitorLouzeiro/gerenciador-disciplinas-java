@@ -94,11 +94,11 @@ CREATE TABLE IF NOT EXISTS cursos(
 INSERT INTO cursos (nome, codUsuario)
 VALUES
 --( Curso, Coordenador desse Curso)
-('Ciencia da Computacao', 1),
-('Engenharia de Software', 2),
-('Sistemas de Informacao', 1),
-('Engenharia de Computacao', NULL),
-('Engenharia Eletrica', Null);
+('Ciencia da Computacao', 44),
+('Engenharia de Software', 45),
+('Sistemas de Informacao', 46),
+('Engenharia de Computacao', 47),
+('Engenharia Eletrica', 48);
 
 -- Criando tabela Disciplina
 CREATE TABLE IF NOT EXISTS disciplinas(
@@ -116,11 +116,11 @@ CREATE TABLE IF NOT EXISTS disciplinas(
 INSERT INTO disciplinas (nome,codCurso, codUsuario)
 VALUES
 -- (Disciplina, Curso, Professor dessa disciplina)
-('Programacao Orientada a Objetos', 1, 4),
-('Programacao Estruturada', 2, NULL),
-('Programacao Funcional', 3, 5),
-('Programacao Logica', 3, NULL),
-('Programacao Web', 1, NULL);
+('Programacao Orientada a Objetos', 1, 31),
+('Programacao Estruturada', 2, 32),
+('Programacao Funcional', 3, 33),
+('Programacao Logica', 3, 34),
+('Programacao Web', 1, 35);
 
 -- Criando tabela AlunosDisciplinas
 CREATE TABLE IF NOT EXISTS alunosDisciplinas(

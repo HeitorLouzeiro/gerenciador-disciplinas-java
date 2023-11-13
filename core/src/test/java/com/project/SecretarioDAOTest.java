@@ -36,7 +36,7 @@ public class SecretarioDAOTest {
 
             // Cria um objeto Aluno para teste
             Aluno aluno = new Aluno();
-            aluno.setCodUsuario(4);
+            aluno.setCodUsuario(54);
             aluno.setNome("Lucas");
             aluno.setCpf("12345678910");
             aluno.setDataNascimento("01/01/2000");
@@ -65,6 +65,7 @@ public class SecretarioDAOTest {
             System.out.println("---------------------------------");
 
             // Atualizando Aluno
+            aluno.setCodUsuario(3);
             aluno.setNome("Moises");
             aluno.setCpf("12345671111");
             secretarioDAO.UpdateAluno(aluno);
@@ -73,8 +74,13 @@ public class SecretarioDAOTest {
             System.out.println("---------------------------------");
 
             // Deletando Aluno
-            secretarioDAO.DeleteAluno(3);
+            secretarioDAO.DeleteAluno(9);
             System.out.println("Aluno deletado com sucesso.");
+
+            System.out.println("---------------------------------");
+            
+            System.out.println("Lista de Alunos:");
+            secretarioDAO.getAlunos();
 
         } catch (SQLException e) {
             // Mensagem de erro caso não consiga conectar ao banco de dados.
