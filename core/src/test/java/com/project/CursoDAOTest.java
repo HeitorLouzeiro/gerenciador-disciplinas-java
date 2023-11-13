@@ -6,8 +6,7 @@ import java.sql.SQLException;
 
 import com.project.DataBase.DataBase;
 
-public class DisciplinasDAOTest {
-
+public class CursoDAOTest {
     public static void main(String[] args) throws IOException {
 
         Connection connection = null;
@@ -16,14 +15,7 @@ public class DisciplinasDAOTest {
             // Obtém uma conexão com o banco de dados
             connection = DataBase.getInstance().getConnection();
 
-            // Chame um metodo de cadastrar disciplina apartir daqui.
-
-
-
-
-            
-           // Chame um metodo de autualizar disciplina apartir daqui.
-
+            // Mostre todos os cursos cadastrados no banco de dados aqui.
            
 
         } catch (SQLException e) {
@@ -37,5 +29,4 @@ public class DisciplinasDAOTest {
             DataBase.getInstance().closeConnection();
         }
     }
-    
 }

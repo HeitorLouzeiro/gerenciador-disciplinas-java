@@ -8,6 +8,7 @@ package com.project.Classes;
 public class Curso {
     private int codCurso; // ID do curso
     private String nomeCurso; // Nome do curso
+    private int codUsuario; // ID do usuário coordenador do curso
 
     /**
      * Construtor padrão da classe Curso.
@@ -51,4 +52,23 @@ public class Curso {
     public void setNomeCurso(String nomeCurso) {
         this.nomeCurso = nomeCurso;
     }
+
+    /**
+     * Obtém o ID do usuário coordenador do curso.
+     * 
+     * @return O ID do usuário coordenador do curso.
+     */
+    public int getCodUsuario() {
+        return codUsuario;
+    }
+
+    /**
+     * Define o ID do usuário coordenador do curso.
+     * 
+     * @param codUsuario O ID do usuário coordenador do curso.
+     */
+    public void setCodUsuario(int codUsuario) {
+        this.codUsuario = codUsuario;
+    }
+    
 }
