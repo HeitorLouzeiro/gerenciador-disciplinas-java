@@ -3,10 +3,12 @@ package com.project;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.format.DateTimeParseException;
 
 import com.project.Classes.Aluno;
 import com.project.Dao.SecretarioDAO;
 import com.project.DataBase.DataBase;
+import com.project.Classes.Data;
 
 /**
  * Classe de teste para as operações CRUD na classe SecretarioDAO para a
@@ -36,11 +38,20 @@ public class SecretarioDAOTest {
 
             // Cria um objeto Aluno para teste
             Aluno aluno = new Aluno();
+            Data dataNascimento = new Data();
+            Data dataEntrada = new Data();
+
+
             aluno.setCodUsuario(54);
             aluno.setNome("Lucas");
             aluno.setCpf("12345678910");
-            aluno.setDataNascimento("01/01/2000");
-            aluno.setDataEntrada("01/01/2020");
+
+            dataNascimento.setData("31-12-2009");
+            aluno.setDataNascimento(dataNascimento);
+
+            dataEntrada.setData("01-01-2023");
+            aluno.setDataEntrada(dataEntrada);
+
             aluno.setSenha("123456");
 
             // Cria uma instância de SecretarioDAO
@@ -78,13 +89,16 @@ public class SecretarioDAOTest {
             System.out.println("Aluno deletado com sucesso.");
 
             System.out.println("---------------------------------");
-            
+
             System.out.println("Lista de Alunos:");
             secretarioDAO.getAlunos();
 
         } catch (SQLException e) {
             // Mensagem de erro caso não consiga conectar ao banco de dados.
             System.err.println("Erro durante o teste: " + e.getMessage());
+        } catch (DateTimeParseException e) {
+            // Mensagem de erro caso ocorra um problema com o formato da data.
+            System.err.println("Data inválida: " + e.getMessage());
         } finally {
             /**
              * Fecha a conexão com o banco de dados.

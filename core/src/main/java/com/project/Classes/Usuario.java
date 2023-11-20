@@ -29,12 +29,12 @@ abstract class Usuario {
     /**
      * Data de nascimento do usuário no formato "dd/mm/aaaa".
      */
-    protected String dataNascimento;
+    protected Data dataNascimento;
 
     /**
      * Data de entrada do usuário no sistema no formato "dd/mm/aaaa".
      */
-    protected String dataEntrada;
+    protected Data dataEntrada;
 
     /**
      * Senha associada ao usuário para autenticação.
@@ -103,7 +103,7 @@ abstract class Usuario {
      * @return A data de nascimento do usuário.
      */
 
-    public String getDataNascimento() {
+    public Data getDataNascimento() {
         return dataNascimento;
     }
 
@@ -113,7 +113,14 @@ abstract class Usuario {
      * @param dataNascimento A nova data de nascimento do usuário.
      */
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(Data dataNascimento) {
+        int idade = dataNascimento.calcularIdade();
+        
+        // Verifica se a idade é inferior a 14 anos
+        if (idade < 14) {
+            throw new IllegalArgumentException("Erro: A idade do aluno ter mais de 14 anos.");
+        }
+
         this.dataNascimento = dataNascimento;
     }
 
@@ -123,7 +130,7 @@ abstract class Usuario {
      * @return A data de entrada do usuário no sistema.
      */
 
-    public String getDataEntrada() {
+    public Data getDataEntrada() {
         return dataEntrada;
     }
 
@@ -133,7 +140,7 @@ abstract class Usuario {
      * @param dataEntrada A nova data de entrada do usuário no sistema.
      */
 
-    public void setDataEntrada(String dataEntrada) {
+    public void setDataEntrada(Data dataEntrada) {
         this.dataEntrada = dataEntrada;
     }
 

@@ -93,17 +93,20 @@ public class SecretarioDAO {
     public void InsertAluno(Aluno aluno) throws IOException, SQLException {
         System.out.println("Inserindo Aluno...");
 
-        PreparedStatement statement = connection.prepareStatement("INSERT INTO Usuario (codUsuario, nome, cpf, dataNascimento, dataEntrada, senha, tipoUsuario) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
-        statement.setInt(1, aluno.getCodUsuario());
-        statement.setString(2, aluno.getNome());
-        statement.setString(3, aluno.getCpf());
-        statement.setString(4, aluno.getDataNascimento());
-        statement.setString(5, aluno.getDataEntrada());
-        statement.setString(6, aluno.getSenha());
-        statement.setString(7, "Aluno");
+
+        PreparedStatement statement = connection.prepareStatement("INSERT INTO Usuario (nome, cpf, dataNascimento, dataEntrada, senha, tipoUsuario) VALUES (?, ?, ?, ?, ?, ?)");
+
+        statement.setString(1, aluno.getNome());
+        statement.setString(2, aluno.getCpf());
+        statement.setString(3, aluno.getDataNascimento().getData());
+        statement.setString(4, aluno.getDataEntrada().getData());
+        statement.setString(5, aluno.getSenha());
+        statement.setString(6, "Aluno");
 
         statement.executeUpdate();
+
+        System.out.println("Aluno Cadastrado com sucesso!");
 
         statement.close();
     }
@@ -122,8 +125,8 @@ public class SecretarioDAO {
 
         statement.setString(1, aluno.getNome());
         statement.setString(2, aluno.getCpf());
-        statement.setString(3, aluno.getDataNascimento());
-        statement.setString(4, aluno.getDataEntrada());
+        statement.setString(3, aluno.getDataNascimento().getData());
+        statement.setString(4, aluno.getDataEntrada().getData());
         statement.setString(5, aluno.getSenha());
         statement.setInt(6, aluno.getCodUsuario());
 
