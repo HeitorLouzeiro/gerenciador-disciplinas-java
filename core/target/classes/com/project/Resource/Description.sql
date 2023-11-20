@@ -120,6 +120,7 @@ VALUES
 ('Programacao Estruturada', 2, 32),
 ('Programacao Funcional', 3, 33),
 ('Programacao Logica', 3, 34),
+('Design', 4, NULL),
 ('Programacao Web', 1, 35);
 
 -- Criando tabela AlunosDisciplinas
@@ -165,6 +166,8 @@ VALUES
 (26, 1),
 (27, 2),
 (28, 3),
+(1, 2),
+(1,4),
 (29, 4);
 
 CREATE TABLE IF NOT EXISTS frequencia (
