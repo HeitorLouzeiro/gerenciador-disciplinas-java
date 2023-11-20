@@ -1,5 +1,8 @@
 package com.project;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import com.project.Dao.IFPIDAO;
 
 /**
@@ -13,20 +16,18 @@ import com.project.Dao.IFPIDAO;
  */
 public class IFPIDAOTest {
 
-    public static void main(String[] args) {
-        testGetUsuarios();
+    public static void main(String[] args) throws IOException, SQLException {
+        IFPIDAO ifpidao = new IFPIDAO();
+
+        ifpidao.getUsuarios();
+        
+        System.out.println("---------------------------------");
+        ifpidao.disciplinasOfertadas();
+        
+        System.out.println("---------------------------------");
+        ifpidao.listarDocentes();
+
+        
     }
 
-    /**
-     * Testa o método getUsuarios da classe IFPIDAO.
-     */
-    private static void testGetUsuarios() {
-        try {
-            IFPIDAO ifpidao = new IFPIDAO();
-            ifpidao.getUsuarios();
-            System.out.println("Teste bem-sucedido!");
-        } catch (Exception e) {
-            System.err.println("Erro durante o teste: " + e.getMessage());
-        }
-    }
 }
