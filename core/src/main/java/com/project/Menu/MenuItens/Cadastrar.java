@@ -28,12 +28,13 @@ public class Cadastrar {
             System.out.print("Digite o CPF do aluno: ");
             aluno.setCpf(scanner.nextLine());
 
-            System.out.print("Coloque as datas no formato dd/mm/aaaa\n");
+            System.out.print("Coloque as datas no formato dd-mm-aaaa\n");
             
             System.out.print("Digite a data de nascimento do aluno: ");
             dataNascimento.setData(scanner.nextLine());
             aluno.setDataNascimento(dataNascimento);
-
+            
+            System.out.print("Coloque as datas no formato dd-mm-aaaa\n");
             System.out.print("Digite a data de entrada do aluno: ");
             dataEntrada.setData(scanner.nextLine());
             aluno.setDataEntrada(dataEntrada);

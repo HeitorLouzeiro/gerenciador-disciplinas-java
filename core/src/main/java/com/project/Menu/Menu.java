@@ -87,7 +87,7 @@ public class Menu {
 
     private static void exibirMenuAluno(int codUsuario) throws SQLException, IOException {
         // Cria um array de Strings com as opções do menu
-        String[] opcoes = { "Mostrar lista de Frequencia.", "Listar Notas.", "Listar Disciplinas." };
+        String[] opcoes = { "Mostrar lista de Frequencia.", "Listar Notas.", "Listar que estou cadastrado Disciplinas." };
 
         // Chama o método exibirMenu, passando o tipo de usuário e as opções do menu
         ExibirMenu.exibirMenu("Aluno", opcoes, codUsuario);
