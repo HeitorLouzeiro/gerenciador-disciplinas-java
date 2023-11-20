@@ -5,7 +5,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import com.project.DataBase.DataBase;
+
+import com.project.Classes.Data;
 
 /**
  * Classe que representa um DAO (Data Access Object) para operações relacionadas aos usuários no sistema.
@@ -43,7 +48,7 @@ public class IFPIDAO {
     public void getUsuarios() throws SQLException {
         Statement statement = connection.createStatement();
         
-        String sql = "SELECT * FROM usuario";
+        String sql = "SELECT * FROM usuario ORDER BY tipoUsuario ASC";
     
         ResultSet resultSet = statement.executeQuery(sql);
 
@@ -52,5 +57,49 @@ public class IFPIDAO {
         }
         
         statement.close();
+    }
+
+    public void listarDocentes() throws SQLException {
+        Statement statement = connection.createStatement();
+
+        String sql = "SELECT usuario.*, disciplinas.nome AS disciplina_nome " +
+             "FROM usuario " +
+             "INNER JOIN disciplinas ON usuario.codUsuario = disciplinas.codUsuario ";
+
+
+    
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        
+        while (resultSet.next()) {
+            String dataEntradaStr = resultSet.getString("dataEntrada");
+    
+            LocalDate dataEntrada = LocalDate.parse(dataEntradaStr, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            
+            Data data = new Data();
+    
+            long tempoTotal = data.calcularTempoTotal(dataEntrada);
+            
+            System.out.println(resultSet.getString("nome") + 
+            "\t|Titulação:" + resultSet.getString("titulacao") + 
+            "\t|Disciplina: " + resultSet.getString("disciplina_nome") + 
+            "\t|Trabalha: " + tempoTotal + " anos"
+            );
+        }
+        
+        statement.close();
+    }
+
+    public void disciplinasOfertadas() throws SQLException {
+        Statement statement = connection.createStatement();
+
+        String sql = "SELECT * FROM disciplinas";
+        
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        while (resultSet.next()) {
+            System.out.println(resultSet.getString("nome")
+            );
+        }
     }
 }
