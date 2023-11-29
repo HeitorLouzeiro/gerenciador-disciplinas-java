@@ -1,32 +1,23 @@
 package com.project;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 
-import com.project.DataBase.DataBase;
+import com.project.Dao.CursoDAO;
 
 public class CursoDAOTest {
     public static void main(String[] args) throws IOException {
-
-        Connection connection = null;
-
         try {
-            // Obtém uma conexão com o banco de dados
-            connection = DataBase.getInstance().getConnection();
-
             // Mostre todos os cursos cadastrados no banco de dados aqui.
-           
+            CursoDAO cursoDAO = new CursoDAO();
+            System.out.println("Lista de Cursos :");
+            cursoDAO.mostrarCursos();
+
+            System.out.println("------------------------------------------");
 
         } catch (SQLException e) {
             // Mensagem de erro caso não consiga conectar ao banco de dados.
             System.err.println("Erro durante o teste: " + e.getMessage());
-        } finally {
-            /**
-             * Fecha a conexão com o banco de dados.
-             * finalmente é executado mesmo se houver uma exceção.
-             */
-            DataBase.getInstance().closeConnection();
         }
     }
 }
