@@ -26,8 +26,6 @@ public class IFPIDAOTest {
         
         System.out.println("---------------------------------");
         ifpidao.listarDocentes();
-
-        
     }
 
 }

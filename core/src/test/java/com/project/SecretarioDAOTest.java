@@ -52,7 +52,9 @@ public class SecretarioDAOTest {
             dataEntrada.setData("01-01-2023");
             aluno.setDataEntrada(dataEntrada);
 
-            aluno.setSenha("123456");
+            aluno.setSenha(aluno.getCpf());
+
+            aluno.setCodCurso(1);
 
             // Cria uma instância de SecretarioDAO
             SecretarioDAO secretarioDAO = new SecretarioDAO();
