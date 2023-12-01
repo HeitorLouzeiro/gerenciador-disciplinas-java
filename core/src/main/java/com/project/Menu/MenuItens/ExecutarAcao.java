@@ -2,6 +2,7 @@ package com.project.Menu.MenuItens;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 import com.project.Menu.ClearConsole;
 
@@ -25,33 +26,63 @@ public class ExecutarAcao {
                 // O método equals compara o valor de duas Strings
                 // Se o valor das Strings for igual, o método retorna true
                 // Se o valor das Strings for diferente, o método retorna false
-                if ("Secretario".equals(tipoUsuario) || "Coordenador".equals(tipoUsuario)) {
+                if ("Secretario".equals(tipoUsuario)) {
                     listar.listarAlunos();
-                } else if ("Professor".equals(tipoUsuario)) {
-                    System.out.println("Cadastrar Frequência...");
+                } else if ("Professor".equals(tipoUsuario) || "Coordenador".equals(tipoUsuario)) {
+                    listar.mostrarDisciplinasProfessor(codUsuario);
+                    
+                    Scanner scanner = new Scanner(System.in);
+                    System.out.print("Digite o código da disciplina: ");
+                    int codDisciplina = scanner.nextInt();
+
+                    cadastrar.cadastrarFrequencia(codDisciplina);
+                    /* listar.listarTurmasProfessor(codUsuario); */
                 } else if ("Aluno".equals(tipoUsuario)) {
-                    System.out.println("Mostrar lista de frequência...");
+                    listar.quantidadeFaltas(codUsuario);
                 }
                 break;
             case 4:
                 if ("Secretario".equals(tipoUsuario)) {
                     cadastrar.cadastrarAluno();
-                } else if ("Coordenador".equals(tipoUsuario)) {
-                    System.out.println("Cadastrar Frequência...");
-                } else if ("Professor".equals(tipoUsuario)) {
-                    System.out.println("Cadastrar Notas...");
+                } else if ("Professor".equals(tipoUsuario) || "Coordenador".equals(tipoUsuario)) {
+                    listar.mostrarDisciplinasProfessor(codUsuario);
+
+                    Scanner scanner = new Scanner(System.in);
+                    
+                    System.out.print("Digite o código da disciplina: ");
+                    int codDisciplina = scanner.nextInt();
+
+                    cadastrar.cadastrarNotas(codDisciplina);
+                    
                 } else if ("Aluno".equals(tipoUsuario)) {
-                    System.out.println("Mostrar minhas notas...");
+                    listar.mostrarNotasAluno(codUsuario);
                 }
                 break;
             case 5:
                 if ("Coordenador".equals(tipoUsuario)) {
-                    System.out.println("Cadastrar Notas...");
+                     listar.listarAlunos();
                 } else if ("Aluno".equals(tipoUsuario)) {
-                    System.out.println("Mostrar suas disciplinas...");
+                    System.out.println("Mostrando suas disciplinas...");
                     listar.disciplinasAluno(codUsuario);
-                } else if ("Professor".equals(tipoUsuario) || "Secretario".equals(tipoUsuario)) {
+                } else if ("Professor".equals(tipoUsuario)) {                    
+                    Scanner scanner = new Scanner(System.in);
+                    listar.mostrarDisciplinasProfessor(codUsuario);
+                    
+                    System.out.print("Digite o código da disciplina: ");
+                    int codDisciplina = scanner.nextInt();
+
+                    
+/* 
+                    System.out.printf("Selecione o tipo de média: \n1 - Média de todas as notas \n" + 
+                    "2 - Média das duas maiores notas \n");
+
+                    System.out.print("Digite o tipo de média: ");
+                    int tipoMedia = scanner.nextInt();
+
+ */
+                }else if ("Secretario".equals(tipoUsuario)) {
                     System.out.println("Opção inválida.");
+                   
                 }
                 break;
             case 6:

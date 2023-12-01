@@ -61,7 +61,8 @@ public class Menu {
     // Método que exibe o menu do secretário
     private static void exibirMenuProfessor(int codUsuario) throws SQLException, IOException {
         // Cria um array de Strings com as opções do menu
-        String[] opcoes = { "Cadastrar Frequencia.", "Cadastrar Notas." };
+        String[] opcoes = { "Cadastrar Frequencia.", "Cadastrar Notas.",
+                "Calcula Média dos alunos." };
 
         // Chama o método exibirMenu, passando o tipo de usuário e as opções do menu
         ExibirMenu.exibirMenu("Professor", opcoes, codUsuario);
@@ -70,7 +71,7 @@ public class Menu {
     // Método que exibe o menu do coordenador
     private static void exibirMenuCoordenador(int codUsuario) throws SQLException, IOException {
         // Cria um array de Strings com as opções do menu
-        String[] opcoes = { "Listar todos os alunos.", "Cadastrar Frequencia.", "Cadastrar Notas.",
+        String[] opcoes = { "Cadastrar Frequencia.", "Cadastrar Notas.", "Listar todos os alunos.",
                 "Cadastrar Disciplina.", "Cadastrar Aluno na Disciplina." };
 
         // Chama o método exibirMenu, passando o tipo de usuário e as opções do menu
@@ -87,7 +88,7 @@ public class Menu {
 
     private static void exibirMenuAluno(int codUsuario) throws SQLException, IOException {
         // Cria um array de Strings com as opções do menu
-        String[] opcoes = { "Mostrar lista de Frequencia.", "Listar Notas.", "Listar que estou cadastrado Disciplinas." };
+        String[] opcoes = { "Mostrar lista de Frequencia.", "Listar Notas.", "Listar Disciplinas." };
 
         // Chama o método exibirMenu, passando o tipo de usuário e as opções do menu
         ExibirMenu.exibirMenu("Aluno", opcoes, codUsuario);
