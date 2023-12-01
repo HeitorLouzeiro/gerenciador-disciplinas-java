@@ -95,14 +95,15 @@ public class SecretarioDAO {
 
 
 
-        PreparedStatement statement = connection.prepareStatement("INSERT INTO Usuario (nome, cpf, dataNascimento, dataEntrada, senha, tipoUsuario) VALUES (?, ?, ?, ?, ?, ?)");
+        PreparedStatement statement = connection.prepareStatement("INSERT INTO Usuario (nome, cpf, dataNascimento, dataEntrada, senha, codCurso, tipoUsuario) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
         statement.setString(1, aluno.getNome());
         statement.setString(2, aluno.getCpf());
         statement.setString(3, aluno.getDataNascimento().getData());
         statement.setString(4, aluno.getDataEntrada().getData());
         statement.setString(5, aluno.getSenha());
-        statement.setString(6, "Aluno");
+        statement.setInt(6, aluno.getCodCurso());
+        statement.setString(7, "Aluno");
 
         statement.executeUpdate();
 
