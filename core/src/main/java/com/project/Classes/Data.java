@@ -6,7 +6,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * A classe Data representa uma data e fornece métodos relacionados a manipulação de datas.
+ * A classe Data representa uma data e fornece métodos relacionados a
+ * manipulação de datas.
+ * 
  * @autor @HeitorLouzeiro
  */
 public class Data {
@@ -18,14 +20,14 @@ public class Data {
      * Define a data com base na representação de string fornecida.
      *
      * @param dataString A representação de string da data no formato "dd-MM-yyyy".
-     * @throws DateTimeParseException Se a string não puder ser convertida para uma data válida.
+     * @throws DateTimeParseException Se a string não puder ser convertida para uma
+     *                                data válida.
      */
     public void setData(String dataString) throws DateTimeParseException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         try {
             LocalDate data = LocalDate.parse(dataString, formatter);
 
-            // Verifica se o ano é válido (não é futuro)
             verificaAno(data.getYear());
 
             this.dia = data.getDayOfMonth();
@@ -37,12 +39,15 @@ public class Data {
         }
     }
 
-    /**
-     * Verifica se o ano é válido (não é futuro).
-     *
-     * @param ano O ano a ser verificado.
-     * @throws IllegalArgumentException Se o ano for futuro, lança uma exceção com mensagem apropriada.
-     */
+    public String getDataAtual() {
+        LocalDate dataAtual = LocalDate.now();
+        this.dia = dataAtual.getDayOfMonth();
+        this.mes = dataAtual.getMonthValue();
+        this.ano = dataAtual.getYear();
+
+        return this.dia + "-" + this.mes + "-" + this.ano;
+    }
+
     public void verificaAno(int ano) {
         int anoAtual = LocalDate.now().getYear();
         if (ano > anoAtual) {

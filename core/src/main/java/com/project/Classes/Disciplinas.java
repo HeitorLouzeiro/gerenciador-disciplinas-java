@@ -7,6 +7,7 @@ package com.project.Classes;
 public class Disciplinas {
     private int codDisciplina; // Código da disciplina
     private String nomeDisciplina; // Nome da disciplina
+    private int codCurso; // Código do curso da disciplina
     private int codUsuario; // Código do usuário que é o professor da disciplina
     
     /**
@@ -53,6 +54,25 @@ public class Disciplinas {
     public void setNomeDisciplina(String nomeDisciplina) {
         this.nomeDisciplina = nomeDisciplina;
     }
+
+    /**
+     * Obtém o código do Curso.
+     * 
+     * @return O código do Curso.
+     */
+    public int getCodCurso() {
+        return codCurso;
+    }
+
+    /**
+     * Define o código do Curso.
+     * 
+     * @param codCurso O código a ser atribuído ao curso.
+     */
+    public void setCodCurso(int codCurso) {
+        this.codCurso = codCurso;
+    }
+    
 
     /**
      * Obtém o código do Professor.

@@ -37,19 +37,27 @@ abstract class Usuario {
     protected Data dataEntrada;
 
     /**
+     * Código do curso associado ao usuário.
+     */
+
+    protected int codCurso;
+    /**
      * Senha associada ao usuário para autenticação.
      */
 
     protected String senha;
+    
 
     // Getters e Setters
-// Getters servem para acessar os atributos
+    // Getters servem para acessar os atributos
     // Setters servem para modificar ou adicionar os atributos
 
     /**
      * Obtém o código do usuário.
      * @return O código do usuário.
      */
+
+
     public int getCodUsuario() {
         return codUsuario;
     }
@@ -144,6 +152,26 @@ abstract class Usuario {
         this.dataEntrada = dataEntrada;
     }
 
+    /**
+     * Obtém o código do curso associado ao usuário.
+     *
+     * @return O código do curso associado ao usuário.
+     */
+
+    public int getCodCurso() {
+        return codCurso;
+    }
+
+    /**
+     * Define o código do curso associado ao usuário.
+     *
+     * @param codCurso O novo código do curso associado ao usuário.
+     */
+
+    public void setCodCurso(int codCurso) {
+        this.codCurso = codCurso;
+    }
+    
     /**
      * Obtém a senha do usuário.
      *
