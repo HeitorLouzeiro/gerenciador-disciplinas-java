@@ -48,4 +48,20 @@ public class AlunoDAO {
                     " - Nome da disciplina: " + resultSet.getString("nome"));
         }
     }
+
+    public void mostrarHistorico(int codUsuario) throws SQLException {
+        Statement statement = connection.createStatement();
+
+        String sql = "SELECT * FROM historico " + 
+        "INNER JOIN disciplinas ON historico.codDisciplina = disciplinas.codDisciplina "+
+        "WHERE historico.codUsuario = " + codUsuario;
+
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        while (resultSet.next()) {
+            System.out.println("Código da disciplina: " + resultSet.getInt("codDisciplina") +
+                    " - Nome da disciplina: " + resultSet.getString("nome") +
+                    " - Media: " + resultSet.getDouble("media"));
+        }
+    }
 }

@@ -12,7 +12,12 @@ public class AlunoDAOTest {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-       
+
+        try {
+            alunoDAO.mostrarHistorico(1);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
     
 }
