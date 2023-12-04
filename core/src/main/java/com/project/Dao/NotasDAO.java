@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 
 import com.project.Classes.Notas;
 import com.project.DataBase.DataBase;
@@ -14,14 +15,14 @@ public class NotasDAO {
     private Connection connection;
 
     public NotasDAO() throws IOException {
-       connection = DataBase.getInstance().getConnection();
+        connection = DataBase.getInstance().getConnection();
     }
 
     public void cadastrarNota(Notas nota) throws SQLException {
         System.out.println("Cadastrando nota");
 
         PreparedStatement statement = connection.prepareStatement(
-            "INSERT INTO notas (codDisciplina, codUsuario, nota) VALUES (?, ?, ?)");
+                "INSERT INTO notas (codDisciplina, codUsuario, nota) VALUES (?, ?, ?)");
 
         statement.setInt(1, nota.getCodDisciplina());
         statement.setInt(2, nota.getCodUsuario());
@@ -37,7 +38,7 @@ public class NotasDAO {
         System.out.println("Atualizando nota");
 
         PreparedStatement statement = connection.prepareStatement(
-            "UPDATE notas SET nota = ? WHERE codDisciplina = ? AND codUsuario = ? AND codNota = ?");
+                "UPDATE notas SET nota = ? WHERE codDisciplina = ? AND codUsuario = ? AND codNota = ?");
 
         statement.setDouble(1, nota.getNota());
         statement.setInt(2, nota.getCodDisciplina());
@@ -54,37 +55,39 @@ public class NotasDAO {
 
         System.out.println("Listando notas do aluno...");
 
-        String sql = "SELECT notas.*, disciplinas.nome as disciplinaNome FROM notas " + 
-        "INNER JOIN disciplinas ON notas.codDisciplina = disciplinas.codDisciplina " +
-        "WHERE notas.codUsuario = " + codUsuario;
+        String sql = "SELECT notas.*, disciplinas.nome as disciplinaNome FROM notas " +
+                "INNER JOIN disciplinas ON notas.codDisciplina = disciplinas.codDisciplina " +
+                "WHERE notas.codUsuario = " + codUsuario;
 
         ResultSet resultSet = statement.executeQuery(sql);
 
         while (resultSet.next()) {
-            System.out.println("Código: " + resultSet.getInt("codDisciplina") + 
-            " - Disciplina: " + resultSet.getString("disciplinaNome") +
-            " - Nota: " + resultSet.getDouble("nota"));
+            System.out.println("Código: " + resultSet.getInt("codDisciplina") +
+                    " - Disciplina: " + resultSet.getString("disciplinaNome") +
+                    " - Nota: " + resultSet.getDouble("nota"));
         }
     }
-    
-    public double calcularMediaAluno(int codDisciplina, int codUsuario) throws SQLException {
+
+    public double calcularMediaAluno(Notas notas) throws SQLException {
         Statement statement = connection.createStatement();
-    
-        String sql = "SELECT * FROM notas WHERE codUsuario = " + codUsuario + 
-        " AND codDisciplina = " + codDisciplina;
-    
+
+        String sql = "SELECT * FROM notas WHERE codUsuario = " + notas.getCodUsuario() +
+                " AND codDisciplina = " + notas.getCodDisciplina();
+
         ResultSet resultSet = statement.executeQuery(sql);
-    
+
         double soma = 0;
         int quantidade = 0;
-    
+        boolean situacaoCadastrado = true;
+
         while (resultSet.next()) {
             soma += resultSet.getDouble("nota");
             quantidade++;
         }
 
-        if (quantidade < 2){
+        if (quantidade < 2) {
             System.out.println("O aluno não possui notas suficientes para calcular a média.");
+            situacaoCadastrado = false;
             return 0;
         }
 
@@ -94,19 +97,25 @@ public class NotasDAO {
 
         situacaoAluno(media);
 
+        if (situacaoCadastrado) {
+            cadastrarMediaAlunos(media, notas.getCodUsuario(), notas.getCodDisciplina());
+        }
+
         return media;
     }
 
-    public double calcularMediaDuasMaioresNotas(int codUsuario) throws SQLException {
+    public double calcularMediaDuasMaioresNotas(Notas notas) throws SQLException {
         Statement statement = connection.createStatement();
 
-        String sql = "SELECT * FROM notas WHERE codUsuario = " + codUsuario;
+        String sql = "SELECT * FROM notas WHERE codUsuario = " + notas.getCodUsuario() +
+                " AND codDisciplina = " + notas.getCodDisciplina() + " ORDER BY nota DESC";
 
         ResultSet resultSet = statement.executeQuery(sql);
 
         double maiorNota = 0;
         double segundaMaiorNota = 0;
         int quantidade = 0;
+        boolean situacaoCadastrado = true;
 
         while (resultSet.next()) {
             if (resultSet.getDouble("nota") > maiorNota) {
@@ -118,13 +127,9 @@ public class NotasDAO {
             quantidade++;
         }
 
-        if (quantidade == 0) {
-            System.out.println("O aluno não possui notas cadastradas");
-            return 0;
-        }
-
-        if (quantidade < 3){
+        if (quantidade < 3) {
             System.out.println("O aluno não possui notas suficientes para calcular a média");
+            situacaoCadastrado = false;
             return 0;
         }
 
@@ -137,6 +142,10 @@ public class NotasDAO {
 
         situacaoAluno(media);
 
+        if (situacaoCadastrado) {
+            cadastrarMediaAlunos(media, notas.getCodUsuario(), notas.getCodDisciplina());
+        }
+
         return media;
     }
 
@@ -148,4 +157,18 @@ public class NotasDAO {
         }
         return media;
     }
+
+    private void cadastrarMediaAlunos(double media, int codDisciplina, int codUsuario) throws SQLException {
+        Statement statement = connection.createStatement();
+            String sql = "INSERT INTO historico (codDisciplina, codUsuario, media) " +
+                    "VALUES (" + codDisciplina + ", " + codUsuario + ", " + media + ")";
+            int linhasAfetadas = statement.executeUpdate(sql);
+
+            if (linhasAfetadas > 0) {
+                System.out.println("Média cadastrada com sucesso!");
+            } else {
+                System.out.println("Erro ao cadastrar média");
+            }
+    }
+
 }

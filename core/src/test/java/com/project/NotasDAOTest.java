@@ -28,23 +28,31 @@ public class NotasDAOTest {
         System.out.println("-----------------------------------");
 
         System.out.println("Calculando média do aluno com 1 nota cadastrada.");
-        notasDAO.calcularMediaAluno(1, 2);
+        notas.setCodDisciplina(1);
+        notas.setCodUsuario(2);
+        notasDAO.calcularMediaAluno(notas);
 
         System.out.println("-----------------------------------");
         
         System.out.println("Calculando média do aluno com 2 notas cadastradas.");
-        notasDAO.calcularMediaAluno(6, 3);
+        notas.setCodDisciplina(6);
+        notas.setCodUsuario(3);
+        notasDAO.calcularMediaAluno(notas);
         
         System.out.println("-----------------------------------");        
 
         System.out.println("Calculando média do aluno com 3 notas cadastradas.");
-        notasDAO.calcularMediaAluno(1, 10);
+        notas.setCodDisciplina(1);
+        notas.setCodUsuario(10);
+        notasDAO.calcularMediaAluno(notas);
 
         System.out.println("-----------------------------------");
 
         System.out.println("Calculando média do aluno com as duas maiores notas.");
-        //TODO Adicionar codigo da disciplina para calcular a media do aluno na disciplina.
-        notasDAO.calcularMediaDuasMaioresNotas(10);
+        notas.setCodDisciplina(1);
+        notas.setCodUsuario(10);
+
+        notasDAO.calcularMediaDuasMaioresNotas(notas);
          
     }
     

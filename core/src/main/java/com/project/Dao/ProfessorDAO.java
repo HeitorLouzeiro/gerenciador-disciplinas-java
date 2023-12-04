@@ -14,6 +14,20 @@ public class ProfessorDAO {
     public ProfessorDAO() throws IOException {
         connection = DataBase.getInstance().getConnection();
     }
+
+    public void mostrarTodosProfessores() throws SQLException{
+        Statement statement = connection.createStatement();
+
+        String sql = "SELECT * FROM usuario WHERE tipoUsuario = 'Professor'";
+
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        while (resultSet.next()) {
+            System.out.println("Código do professor: " + resultSet.getInt("codUsuario") + " - Nome do professor: " + resultSet.getString("nome"));
+        }
+
+        statement.close();
+    }
     
     public void mostrarDisciplinasProfessor(int codUsuario) throws SQLException {
         Statement statement = connection.createStatement();
