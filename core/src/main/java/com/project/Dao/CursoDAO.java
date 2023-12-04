@@ -35,12 +35,12 @@ public class CursoDAO {
      * @throws IOException Se houver um erro de E/S durante a execução da consulta.
      * @throws SQLException Se ocorrer um erro SQL durante a execução da consulta.
      */
-    public void mostrarCursos() throws IOException, SQLException {
+    public void mostrarCursos(int codUsuario) throws IOException, SQLException {
         // Criação do objeto Statement para executar consultas SQL
         Statement statement = connection.createStatement();
 
         // Definição da consulta SQL para recuperar códigos e nomes dos cursos
-        String sql = "SELECT codCurso, nome FROM cursos";
+        String sql = "SELECT codCurso, nome FROM cursos WHERE codUsuario = " + codUsuario + "";
 
         // Execução da consulta SQL e obtenção do conjunto de resultados
         ResultSet resultSet = statement.executeQuery(sql);

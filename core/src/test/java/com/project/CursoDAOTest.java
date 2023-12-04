@@ -10,7 +10,7 @@ public class CursoDAOTest {
         try {
             CursoDAO cursoDAO = new CursoDAO();
             System.out.println("Lista de Cursos :");
-            cursoDAO.mostrarCursos();
+            cursoDAO.mostrarCursos(44);
 
             System.out.println("------------------------------------------");
 
