@@ -56,6 +56,7 @@ public class ExecutarAcao {
                     
                 } else if ("Aluno".equals(tipoUsuario)) {
                     listar.mostrarNotasAluno(codUsuario);
+                    listar.mostrarHistorico(codUsuario);
                 }
                 break;
             case 5:
@@ -66,20 +67,14 @@ public class ExecutarAcao {
                     listar.disciplinasAluno(codUsuario);
                 } else if ("Professor".equals(tipoUsuario)) {                    
                     Scanner scanner = new Scanner(System.in);
+
                     listar.mostrarDisciplinasProfessor(codUsuario);
                     
                     System.out.print("Digite o código da disciplina: ");
                     int codDisciplina = scanner.nextInt();
 
+                    cadastrar.cadastrarMediaAlunos(codDisciplina);
                     
-/* 
-                    System.out.printf("Selecione o tipo de média: \n1 - Média de todas as notas \n" + 
-                    "2 - Média das duas maiores notas \n");
-
-                    System.out.print("Digite o tipo de média: ");
-                    int tipoMedia = scanner.nextInt();
-
- */
                 }else if ("Secretario".equals(tipoUsuario)) {
                     System.out.println("Opção inválida.");
                    
@@ -88,6 +83,7 @@ public class ExecutarAcao {
             case 6:
                 if ("Coordenador".equals(tipoUsuario)) {
                     System.out.println("Criar Disciplina...");
+                    cadastrar.cadastrarDisciplina(codUsuario);
                 } else {
                     System.out.println("Opção inválida.");
                 }

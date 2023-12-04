@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.project.Dao.AlunoDAO;
+import com.project.Dao.CursoDAO;
 import com.project.Dao.DisciplinasDAO;
 import com.project.Dao.FrequenciaDAO;
 import com.project.Dao.IFPIDAO;
@@ -16,6 +17,17 @@ import com.project.Dao.SecretarioDAO;
 public class Listar {
     static class Space {
         static String space = "-----------------------------------------------------";
+    }
+
+    public void listarCursos(int codUsuario) throws IOException{
+        CursoDAO cursoDAO = new CursoDAO();
+        try {
+            System.out.println("Listando todos os cursos...");
+            cursoDAO.mostrarCursos(codUsuario);
+            System.out.println(Space.space);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     // Listar todos os alunos
@@ -111,16 +123,24 @@ public class Listar {
         return codigosAlunos;
     }
 
-    public List<Integer> SelecionandoListaAlunos(int codDisciplina) throws SQLException, IOException {
-       List<Integer> codigosAlunos = new ArrayList<>();
+    public void mostrarHistorico(int codUsuario) throws IOException {
+        AlunoDAO alunoDAO = new AlunoDAO();
         try {
-            DisciplinasDAO disciplinasDAO = new DisciplinasDAO();
-            codigosAlunos = disciplinasDAO.listarAlunosDisciplina(codDisciplina);
+            alunoDAO.mostrarHistorico(codUsuario);
             System.out.println(Space.space);
         } catch (SQLException e) {
-            System.out.println("Erro ao listar alunos da disciplina. Motivo: " + e.getMessage());
-            // Log the exception or handle it as appropriate for your application
+            e.printStackTrace();
         }
-        return codigosAlunos;
     }
+
+    public void mostrarTodosProfessores() throws IOException {
+        ProfessorDAO professorDAO = new ProfessorDAO();
+        try {
+            professorDAO.mostrarTodosProfessores();
+            System.out.println(Space.space);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

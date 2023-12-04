@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS disciplinas;
 DROP TABLE IF EXISTS alunosDisciplinas;
 DROP TABLE IF EXISTS frequencia;
 DROP TABLE IF EXISTS notas;
+DROP TABLE IF EXISTS historico;
 
 /* Criando tabela Aluno */
 CREATE TABLE IF NOT EXISTS usuario(

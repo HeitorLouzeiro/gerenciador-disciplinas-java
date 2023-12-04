@@ -7,8 +7,10 @@ import java.util.Scanner;
 
 import com.project.Classes.Aluno;
 import com.project.Classes.Data;
+import com.project.Classes.Disciplinas;
 import com.project.Classes.Frequencia;
 import com.project.Classes.Notas;
+import com.project.Dao.DisciplinasDAO;
 import com.project.Dao.FrequenciaDAO;
 import com.project.Dao.NotasDAO;
 import com.project.Dao.SecretarioDAO;
@@ -32,8 +34,12 @@ public class Cadastrar {
                 System.out.print("Digite o nome do aluno: ");
                 aluno.setNome(scanner.nextLine());
 
+                scanner.nextLine();
+
                 System.out.print("Digite o CPF do aluno: ");
                 aluno.setCpf(scanner.nextLine());
+
+                scanner.nextLine();
 
                 System.out.print("Coloque as datas no formato dd-mm-aaaa\n");
 
@@ -129,13 +135,95 @@ public class Cadastrar {
     }
 
     public void cadastrarMediaAlunos(int codDisciplina) throws IOException {
-        
-        NotasDAO notasDAO = new NotasDAO();
         Listar listar = new Listar();
+        Notas notas = new Notas();
+        NotasDAO notasDAO = new NotasDAO();
 
         Scanner scanner = new Scanner(System.in);
 
-        
+        System.out.println("Selecione o método de calcular as notas.");
+        System.out.println("1 - Média de todas as notas");
+        System.out.println("2 - Média das duas maiores notas");
+        System.out.print("Digite o tipo de média: ");
+        int tipoMedia = scanner.nextInt();
+
+        List<Integer> codigosAlunos = listar.listarAlunosDisciplina(codDisciplina);
+
+        try {
+            System.out.println("Média de todas as notas nessa disciplina...");
+            for (Integer codigo : codigosAlunos) {
+                System.out.println("Código do aluno: " + codigo);
+                notas.setCodUsuario(codigo);
+                notas.setCodDisciplina(codDisciplina);
+                int codigoUsuario = notas.getCodUsuario();
+
+                listar.mostrarNotasAluno(codigoUsuario);
+            }
+
+            System.out.println("Deseja cadastrar as médias desses alunos?");
+            System.out.println("1 - Sim");
+            System.out.println("2 - Não");
+            System.out.print("Digite a opção: ");
+            int opcao = scanner.nextInt();
+
+            if (opcao == 1) {
+                cadastrarMedias(notas, codigosAlunos, codDisciplina, tipoMedia, notasDAO);
+            } else if (opcao == 2) {
+                System.out.println("Voltando ao menu...");
+            } else {
+                System.out.println("Opção inválida.");
+            }
+
+            System.out.println(Space.space);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void cadastrarMedias(Notas notas, List<Integer> codigosAlunos, int codDisciplina,
+            int tipoMedia, NotasDAO notasDAO) throws SQLException {
+        for (Integer codigo : codigosAlunos) {
+            System.out.println("Código do aluno: " + codigo);
+            notas.setCodUsuario(codigo);
+            notas.setCodDisciplina(codDisciplina);
+
+            if (tipoMedia == 1) {
+                notasDAO.calcularMediaAluno(notas);
+            } else if (tipoMedia == 2) {
+                notasDAO.calcularMediaDuasMaioresNotas(notas);
+            }
+        }
+    }
+
+    public void cadastrarDisciplina(int codUsuario) throws IOException {
+        Listar listar = new Listar();
+        Disciplinas disciplina = new Disciplinas();
+        DisciplinasDAO disciplinasDAO = new DisciplinasDAO();
+        Scanner scanner = new Scanner(System.in);
+
+        listar.listarCursos(codUsuario);
+
+        System.out.print("Digite o código do curso: ");
+        disciplina.setCodCurso(scanner.nextInt());
+
+        // Limpar o buffer antes de ler o nome da disciplina
+        scanner.nextLine();
+
+        System.out.print("Digite o nome da disciplina: ");
+        disciplina.setNomeDisciplina(scanner.nextLine());
+
+        listar.mostrarTodosProfessores();
+
+        System.out.print("O codigo do professor que irá ministrar a disciplina: ");
+        disciplina.setCodUsuario(scanner.nextInt());
+
+        try {
+            disciplinasDAO.cadastrarDisciplina(disciplina);
+            System.out.println(Space.space);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
