@@ -34,12 +34,8 @@ public class Cadastrar {
                 System.out.print("Digite o nome do aluno: ");
                 aluno.setNome(scanner.nextLine());
 
-                scanner.nextLine();
-
                 System.out.print("Digite o CPF do aluno: ");
                 aluno.setCpf(scanner.nextLine());
-
-                scanner.nextLine();
 
                 System.out.print("Coloque as datas no formato dd-mm-aaaa\n");
 

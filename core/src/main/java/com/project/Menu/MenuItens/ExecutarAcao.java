@@ -36,7 +36,6 @@ public class ExecutarAcao {
                     int codDisciplina = scanner.nextInt();
 
                     cadastrar.cadastrarFrequencia(codDisciplina);
-                    /* listar.listarTurmasProfessor(codUsuario); */
                 } else if ("Aluno".equals(tipoUsuario)) {
                     listar.quantidadeFaltas(codUsuario);
                 }
@@ -89,6 +88,7 @@ public class ExecutarAcao {
                 }
                 break;
             case 7:
+                //TODO: FAZER O CADASTRO DO ALUNO EM UMA DISCIPLINA
                 if ("Coordenador".equals(tipoUsuario)) {
                     System.out.println("Cadastrar aluno em uma disciplina...");
                 } else {
