@@ -102,7 +102,29 @@ abstract class Usuario {
      */
 
     public void setCpf(String cpf) {
+        while (!verificarCpf(cpf)) {
+            System.out.println("CPF inválido. O CPF deve conter 11 dígitos.");
+            System.out.println("Digite o CPF novamente: ");
+            Scanner scanner = new Scanner(System.in);
+            cpf = scanner.nextLine();
+            
+        }
+
         this.cpf = cpf;
+    }
+
+    /*
+     * Verifica se o CPF contém 11 dígitos.
+     * Se o CPF conter 11 dígitos, retorna true.
+     */
+    private boolean verificarCpf(String cpf) {
+        /*
+        * Expressão regular para verificar se o CPF contém 11 dígitos.
+        * \\d = dígito
+        * {11} = 11 vezes
+        * 
+        */
+        return cpf.matches("\\d{11}");
     }
 
     /**
