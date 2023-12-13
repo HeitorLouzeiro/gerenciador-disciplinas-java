@@ -11,7 +11,7 @@ public class NotasDAOTest {
         Notas notas = new Notas();
         notas.setCodDisciplina(1);
         notas.setCodUsuario(4);
-        notas.setNota(9.5);
+        notas.setNota(10);
 
         NotasDAO notasDAO = new NotasDAO();
         notasDAO.cadastrarNota(notas);
