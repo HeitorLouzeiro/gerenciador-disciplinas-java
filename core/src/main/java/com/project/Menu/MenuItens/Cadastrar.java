@@ -16,8 +16,20 @@ import com.project.Dao.NotasDAO;
 import com.project.Dao.SecretarioDAO;
 import com.project.Menu.MenuItens.Listar.Space;
 
+/**
+ * Classe que representa o menu de cadastro do sistema.
+ * 
+ * @Author @HeitorLouzeiro
+ * 
+ */
+
 public class Cadastrar {
-    // Cadastrar Aluno
+    /**
+     * Realiza o cadastro de alunos no sistema.
+     *
+     * @throws IOException Se ocorrer um erro de I/O durante a execução.
+     */
+
     public void cadastrarAluno() throws IOException {
         SecretarioDAO secretarioDAO = new SecretarioDAO();
         Aluno aluno = new Aluno();
@@ -60,6 +72,12 @@ public class Cadastrar {
         } while (opcao != 0);
 
     }
+    /**
+     * Realiza o cadastro de frequência para uma disciplina específica.
+     *
+     * @param codDisciplina O código da disciplina para a qual a frequência será cadastrada.
+     * @throws IOException Se ocorrer um erro de I/O durante a execução.
+     */
 
     public void cadastrarFrequencia(int codDisciplina) throws IOException {
         Frequencia frequencia = new Frequencia();
@@ -101,7 +119,12 @@ public class Cadastrar {
             e.printStackTrace();
         }
     }
-
+        /**
+     * Realiza o cadastro de notas para uma disciplina específica.
+     *
+     * @param codDisciplina O código da disciplina para a qual as notas serão cadastradas.
+     * @throws IOException Se ocorrer um erro de I/O durante a execução.
+     */
     public void cadastrarNotas(int codDisciplina) throws IOException {
         Notas notas = new Notas();
         NotasDAO notasDAO = new NotasDAO();
@@ -129,6 +152,12 @@ public class Cadastrar {
             e.printStackTrace();
         }
     }
+    /**
+     * Realiza o cadastro das médias dos alunos em uma disciplina específica.
+     *
+     * @param codDisciplina O código da disciplina para a qual as médias serão cadastradas.
+     * @throws IOException Se ocorrer um erro de I/O durante a execução.
+     */
 
     public void cadastrarMediaAlunos(int codDisciplina) throws IOException {
         Listar listar = new Listar();
@@ -175,6 +204,16 @@ public class Cadastrar {
             e.printStackTrace();
         }
     }
+    /**
+     * Cadastra as médias dos alunos em uma disciplina específica.
+     *
+     * @param notas         O objeto Notas contendo as informações necessárias.
+     * @param codigosAlunos A lista de códigos dos alunos.
+     * @param codDisciplina O código da disciplina.
+     * @param tipoMedia     O tipo de média a ser calculado.
+     * @param notasDAO      O objeto NotasDAO para acesso ao banco de dados.
+     * @throws SQLException Se ocorrer um erro SQL durante a execução.
+     */
 
     private void cadastrarMedias(Notas notas, List<Integer> codigosAlunos, int codDisciplina,
             int tipoMedia, NotasDAO notasDAO) throws SQLException {
@@ -190,7 +229,12 @@ public class Cadastrar {
             }
         }
     }
-
+    /**
+     * Realiza o cadastro de uma disciplina associada a um professor.
+     *
+     * @param codUsuario O código do usuário/professor associado à disciplina.
+     * @throws IOException Se ocorrer um erro de I/O durante a execução.
+     */
     public void cadastrarDisciplina(int codUsuario) throws IOException {
         Listar listar = new Listar();
         Disciplinas disciplina = new Disciplinas();
@@ -222,7 +266,11 @@ public class Cadastrar {
 
     }
 
-
+    /**
+     * Cadastra um aluno em uma disciplina.
+     *
+     * @throws IOException Se ocorrer um erro de I/O durante a execução.
+     */
     public void cadastrarAlunoDisciplina() throws IOException {
         Listar listar = new Listar();
         Scanner scanner = new Scanner(System.in);

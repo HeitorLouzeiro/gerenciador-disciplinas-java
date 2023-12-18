@@ -6,9 +6,23 @@ import java.util.Scanner;
 
 import com.project.Menu.ClearConsole;
 
+/**
+ * Classe responsável por executar ações de acordo com a opção escolhida pelo usuário e pelo tipo de usuário.
+ * 
+ * @Author @HeitorLouzeiro
+ */
 public class ExecutarAcao {
-    // Método que executa a ação de acordo com a opção escolhida pelo usuário e pelo
-    // tipo de usuário
+
+    /**
+     * Executa a ação de acordo com a opção escolhida pelo usuário e pelo tipo de usuário.
+     *
+     * @param opcao       A opção escolhida pelo usuário.
+     * @param tipoUsuario O tipo de usuário (Secretario, Professor, Coordenador, Aluno).
+     * @param codUsuario  O código do usuário.
+     * @throws IOException  Se ocorrer um erro de I/O durante a execução.
+     * @throws SQLException Se ocorrer um erro SQL durante a execução.
+     */
+
     public static void executarAcao(int opcao, String tipoUsuario, int codUsuario) throws IOException, SQLException {
         Listar listar = new Listar();
         Cadastrar cadastrar = new Cadastrar();

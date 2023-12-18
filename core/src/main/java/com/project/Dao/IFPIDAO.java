@@ -8,27 +8,21 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import com.project.DataBase.DataBase;
-
 import com.project.Classes.Data;
+import com.project.DataBase.DataBase;
 
 /**
  * Classe que representa um DAO (Data Access Object) para operações relacionadas aos usuários no sistema.
  *
  * Esta classe fornece métodos para recuperar informações sobre usuários do banco de dados.
  * Ela utiliza a classe DataBase para obter uma conexão com o banco de dados.
- *
- * Exemplo de uso:
- * <pre>
- * {@code
- * IFPIDAO dao = new IFPIDAO();
- * dao.getUsuarios();
- * }
- * </pre>
  * 
- * @author @HeitorLouzeiro
+ * @author Heitor Louzeiro
  */
 public class IFPIDAO {
+    /**
+     * Conexão com o banco de dados.
+     */
     private Connection connection;
 
     /**
@@ -59,6 +53,11 @@ public class IFPIDAO {
         statement.close();
     }
 
+    /**
+     * Lista docentes, incluindo informações sobre titulação, disciplina e tempo de trabalho.
+     *
+     * @throws SQLException Se ocorrer um erro durante a execução da consulta SQL.
+     */
     public void listarDocentes() throws SQLException {
         Statement statement = connection.createStatement();
 
@@ -66,11 +65,8 @@ public class IFPIDAO {
              "FROM usuario " +
              "INNER JOIN disciplinas ON usuario.codUsuario = disciplinas.codUsuario ";
 
-
-    
         ResultSet resultSet = statement.executeQuery(sql);
 
-        
         while (resultSet.next()) {
             String dataEntradaStr = resultSet.getString("dataEntrada");
     
@@ -90,6 +86,11 @@ public class IFPIDAO {
         statement.close();
     }
 
+    /**
+     * Lista disciplinas oferecidas.
+     *
+     * @throws SQLException Se ocorrer um erro durante a execução da consulta SQL.
+     */
     public void disciplinasOfertadas() throws SQLException {
         Statement statement = connection.createStatement();
 
@@ -102,5 +103,7 @@ public class IFPIDAO {
             (" Disciplina: ")+ resultSet.getString("nome")
             );
         }
+        
+        statement.close();
     }
 }

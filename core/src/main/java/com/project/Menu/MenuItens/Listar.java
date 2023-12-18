@@ -14,11 +14,22 @@ import com.project.Dao.NotasDAO;
 import com.project.Dao.ProfessorDAO;
 import com.project.Dao.SecretarioDAO;
 
+/**
+ * Classe responsável por fornecer métodos para listar informações do sistema.
+ *
+ * @Author @HeitorLouzeiro
+ */
 public class Listar {
     static class Space {
         static String space = "-----------------------------------------------------";
     }
-
+    /**
+     * Lista todos os cursos disponíveis para um determinado usuário.
+     *
+     * @param codUsuario O código do usuário para o qual os cursos serão listados.
+     * @throws IOException  Se ocorrer um erro de I/O durante a execução.
+     */
+    
     public void listarCursos(int codUsuario) throws IOException{
         CursoDAO cursoDAO = new CursoDAO();
         try {

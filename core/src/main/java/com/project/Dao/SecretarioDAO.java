@@ -15,14 +15,6 @@ import com.project.Classes.Aluno;
  *
  * Esta classe fornece métodos para recuperar, inserir, atualizar e deletar informações sobre alunos no banco de dados.
  * Ela utiliza a classe DataBase para obter uma conexão com o banco de dados.
- *
- * Exemplo de uso:
- * <pre>
- * {@code
- * SecretarioDAO dao = new SecretarioDAO();
- * dao.getAlunos();
- * }
- * </pre>
  * 
  * @author @HeitorLouzeiro
  */

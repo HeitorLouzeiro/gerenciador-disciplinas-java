@@ -4,21 +4,41 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException; // Importa a classe SQLException para tratamento de exceções
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.project.Classes.Disciplinas; // Importa a classe Disciplinas
+import com.project.Classes.Disciplinas;
 import com.project.DataBase.DataBase;
 
+/**
+ * A classe DisciplinasDAO fornece métodos para acessar e manipular dados relacionados a disciplinas no banco de dados.
+ * @author @Kauanyr06 @HeitorLouzeiro
+ * 
+ */
 public class DisciplinasDAO {
+    /**
+     * Conexão com o banco de dados.
+     */
     private Connection connection;
 
+    /**
+     * Construtor da classe DisciplinasDAO.
+     * Inicializa a conexão com o banco de dados através da instância da classe DataBase.
+     *
+     * @throws IOException Se houver um erro de E/S ao obter a conexão com o banco de dados.
+     */
     public DisciplinasDAO() throws IOException {
         connection = DataBase.getInstance().getConnection();
     }
 
+    /**
+     * Cadastra uma nova disciplina no banco de dados.
+     *
+     * @param disciplina A disciplina a ser cadastrada.
+     * @throws SQLException Se ocorrer um erro SQL durante a execução da consulta.
+     */
     public void cadastrarDisciplina(Disciplinas disciplina) throws SQLException {
         System.out.println("Inserindo Disciplina...");
 
@@ -34,10 +54,23 @@ public class DisciplinasDAO {
         statement.close();
     }
 
+    /**
+     * Edita uma disciplina com base no ID da disciplina.
+     *
+     * @param codDisciplina O ID da disciplina a ser editada.
+     * @throws SQLException Se ocorrer um erro SQL durante a execução da consulta.
+     */
     public void editarDisciplinaById(int codDisciplina) throws SQLException {
-
+        // Implementação da edição da disciplina por ID
     }
 
+    /**
+     * Obtém uma disciplina com base no ID da disciplina.
+     *
+     * @param codDisciplina O ID da disciplina a ser obtida.
+     * @return A disciplina correspondente ao ID fornecido.
+     * @throws SQLException Se ocorrer um erro SQL durante a execução da consulta.
+     */
     public Disciplinas getDisciplinasById(int codDisciplina) throws SQLException {
         Statement statement = connection.createStatement();
 
@@ -47,15 +80,10 @@ public class DisciplinasDAO {
         ResultSet resultSet = statement.executeQuery(sql);
 
         while (resultSet.next()) {
-            // Cria um objeto disciplinas e popula com os valores do BD
             Disciplinas disciplinas = new Disciplinas();
-
-            // Popula o objeto disciplinas com os valores do BD
             disciplinas.setCodDisciplina(resultSet.getInt("codDisciplina"));
             disciplinas.setNomeDisciplina(resultSet.getString("nome"));
             disciplinas.setCodUsuario(resultSet.getInt("codUsuario"));
-
-            // Retorna o objeto disciplinas
             return disciplinas;
         }
 
@@ -63,6 +91,13 @@ public class DisciplinasDAO {
         return null;
     }
 
+    /**
+     * Associa um aluno a uma disciplina no banco de dados.
+     *
+     * @param codDisciplina O ID da disciplina.
+     * @param codUsuario    O ID do aluno.
+     * @throws SQLException Se ocorrer um erro SQL durante a execução da consulta.
+     */
     public void alunoDisciplina(int codDisciplina, int codUsuario) throws SQLException {
         Statement statement = connection.createStatement();
 
@@ -73,6 +108,11 @@ public class DisciplinasDAO {
         statement.close();
     }
 
+    /**
+     * Lista alunos que não estão cadastrados em nenhuma disciplina.
+     *
+     * @throws SQLException Se ocorrer um erro SQL durante a execução da consulta.
+     */
     public void alunosNaoCadastradosEmDisciplina() throws SQLException {
         Statement statement = connection.createStatement();
 
@@ -87,9 +127,16 @@ public class DisciplinasDAO {
         }
 
         statement.close();
-    }   
+    }
 
-    public List<Integer>  listarAlunosDisciplina(int codDisciplina) throws SQLException {
+    /**
+     * Lista os códigos dos alunos associados a uma disciplina.
+     *
+     * @param codDisciplina O ID da disciplina.
+     * @return Uma lista de códigos de alunos associados à disciplina.
+     * @throws SQLException Se ocorrer um erro SQL durante a execução da consulta.
+     */
+    public List<Integer> listarAlunosDisciplina(int codDisciplina) throws SQLException {
         List<Integer> codigosAlunos = new ArrayList<>();
         Statement statement = connection.createStatement();
 

@@ -4,16 +4,6 @@ package com.project.Classes;
  * Classe que representa um Professor no sistema, estendendo a classe Funcionario.
  * Esta classe herda atributos e comportamentos da classe Funcionario e representa
  * um tipo específico de funcionário, neste caso, um Professor.
- *
- * Exemplo de uso:
- * <pre>
- * {@code
- * Professor professor = new Professor();
- * professor.setCodUsuario(1);
- * professor.setNome("João");
- * // ... outros atributos podem ser configurados ...
- * }
- * </pre>
  * 
  * @author @Claudemiro-Nogueira
  */

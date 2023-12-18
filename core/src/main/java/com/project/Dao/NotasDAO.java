@@ -9,13 +9,33 @@ import java.sql.Statement;
 
 import com.project.Classes.Notas;
 import com.project.DataBase.DataBase;
-
+/**
+ * A classe NotasDAO fornece métodos para acessar e manipular dados relacionados a notas de alunos no banco de dados.
+ * @Author @HeitorLouzeiro
+ */
 public class NotasDAO {
+    /**
+     * Conexão com o banco de dados.
+     */
     private Connection connection;
+
+    /**
+     * Construtor da classe NotasDAO.
+     * Inicializa a conexão com o banco de dados através da instância da classe DataBase.
+     *
+     * @throws IOException Se houver um erro de E/S ao obter a conexão com o banco de dados.
+     */
 
     public NotasDAO() throws IOException {
         connection = DataBase.getInstance().getConnection();
     }
+
+    /**
+     * Cadastra uma nova nota no banco de dados.
+     *
+     * @param nota A nota a ser cadastrada.
+     * @throws SQLException Se ocorrer um erro SQL durante a execução da consulta.
+     */
 
     public void cadastrarNota(Notas nota) throws SQLException {
         System.out.println("Cadastrando nota");
@@ -33,6 +53,13 @@ public class NotasDAO {
 
     }
 
+    /**
+     * Atualiza uma nota com base no ID da nota.
+     *
+     * @param nota A nota a ser atualizada.
+     * @throws SQLException Se ocorrer um erro SQL durante a execução da consulta.
+     */
+
     public void atualizarNota(Notas nota) throws SQLException {
         System.out.println("Atualizando nota");
 
@@ -48,6 +75,14 @@ public class NotasDAO {
 
         System.out.println("Nota atualizada com sucesso!");
     }
+
+    /**
+     * Obtém uma nota com base no ID da nota.
+     *
+     * @param codNota O ID da nota a ser obtida.
+     * @return A nota correspondente ao ID fornecido.
+     * @throws SQLException Se ocorrer um erro SQL durante a execução da consulta.
+     */
 
     public void mostrarNotasAluno(int codUsuario) throws SQLException {
         Statement statement = connection.createStatement();
@@ -66,7 +101,13 @@ public class NotasDAO {
                     " - Nota: " + resultSet.getDouble("nota"));
         }
     }
-
+    /**
+     * Calcula a média de um aluno com base em suas notas.
+     *
+     * @param notas O objeto Notas contendo as notas do aluno.
+     * @return A média do aluno.
+     * @throws SQLException Se ocorrer um erro SQL durante a execução da consulta.
+     */
     public double calcularMediaAluno(Notas notas) throws SQLException {
         Statement statement = connection.createStatement();
 
@@ -103,6 +144,13 @@ public class NotasDAO {
         return media;
     }
 
+    /**
+     * Calcula a média de um aluno com base em suas duas maiores notas.
+     *
+     * @param notas O objeto Notas contendo as notas do aluno.
+     * @return A média do aluno.
+     * @throws SQLException Se ocorrer um erro SQL durante a execução da consulta.
+     */
     public double calcularMediaDuasMaioresNotas(Notas notas) throws SQLException {
         Statement statement = connection.createStatement();
 
@@ -148,6 +196,12 @@ public class NotasDAO {
         return media;
     }
 
+    /**
+     * Determina a situação do aluno com base na média.
+     *
+     * @param media A média do aluno.
+     * @return A média do aluno.
+     */
     private double situacaoAluno(double media) {
         if (media >= 7) {
             System.out.println("Aprovado");
@@ -156,6 +210,15 @@ public class NotasDAO {
         }
         return media;
     }
+
+    /**
+     * Cadastra a média de um aluno no banco de dados.
+     *
+     * @param media       A média do aluno.
+     * @param codDisciplina O ID da disciplina.
+     * @param codUsuario    O ID do aluno.
+     * @throws SQLException Se ocorrer um erro SQL durante a execução da consulta.
+     */
 
     private void cadastrarMediaAlunos(double media, int codDisciplina, int codUsuario) throws SQLException {
         Statement statement = connection.createStatement();

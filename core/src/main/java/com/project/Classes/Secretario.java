@@ -6,15 +6,6 @@ package com.project.Classes;
  * Esta classe herda atributos e comportamentos da classe Funcionario e representa
  * um tipo específico de funcionário, neste caso, um secretário.
  *
- * Exemplo de uso:
- * <pre>
- * {@code
- * Secretario secretario = new Secretario();
- * secretario.setCodUsuario(1);
- * secretario.setNome("Maria");
- * // ... outros atributos podem ser configurados ...
- * }
- * </pre>
  * 
  * @author @Kauanyr06
  */

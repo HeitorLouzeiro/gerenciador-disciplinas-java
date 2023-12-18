@@ -5,16 +5,6 @@ package com.project.Classes;
  *
  * Esta classe herda atributos e comportamentos da classe Usuario e representa
  * um tipo específico de usuário, neste caso, um aluno.
- *
- * Exemplo de uso:
- * <pre>
- * {@code
- * Aluno aluno = new Aluno();
- * aluno.setCodUsuario(1);
- * aluno.setNome("João");
- * // ... outros atributos podem ser configurados ...
- * }
- * </pre>
  * 
  * @author @HeitorLouzeiro
  */
