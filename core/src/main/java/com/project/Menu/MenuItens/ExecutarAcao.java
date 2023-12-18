@@ -88,9 +88,9 @@ public class ExecutarAcao {
                 }
                 break;
             case 7:
-                //TODO: FAZER O CADASTRO DO ALUNO EM UMA DISCIPLINA
                 if ("Coordenador".equals(tipoUsuario)) {
                     System.out.println("Cadastrar aluno em uma disciplina...");
+                    cadastrar.cadastrarAlunoDisciplina();
                 } else {
                     System.out.println("Opção inválida.");
                 }

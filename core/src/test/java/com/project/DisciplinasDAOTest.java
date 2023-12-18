@@ -48,6 +48,24 @@ public class DisciplinasDAOTest {
             // Chame um metodo de listar disciplinas apartir daqui.
             disciplinasDAO.listarAlunosDisciplina(1);
 
+            System.out.println("---------------------------------");
+
+            // Mostrando os alunos que estão cadastrados em uma disciplina
+
+            System.out.println("Alunos que não estão cadastrados em uma disciplina: ");
+
+            disciplinasDAO.alunosNaoCadastradosEmDisciplina();
+
+            // Cadastrar aluno em uma disciplina
+            disciplinasDAO.alunoDisciplina(1, 30);
+
+            System.out.println("Inserindo aluno na disciplina...");
+
+            System.out.println("---------------------------------");
+
+            disciplinasDAO.alunosNaoCadastradosEmDisciplina();
+
+
         } catch (SQLException e) {
             // Mensagem de erro caso não consiga conectar ao banco de dados.
             System.err.println("Erro durante o teste: " + e.getMessage());

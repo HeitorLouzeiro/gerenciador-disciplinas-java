@@ -66,6 +66,18 @@ public class Listar {
         }
     }
 
+    // Listar todos os alunos que não estão cadastrados em uma disciplina
+    public void mostrarAlunosNaoCadastradosEmDisciplina() throws IOException {
+        DisciplinasDAO disciplinasDAO = new DisciplinasDAO();
+        try {
+            System.out.println("Listando todos os alunos que não estão cadastrados em uma disciplina...");
+            disciplinasDAO.alunosNaoCadastradosEmDisciplina();
+            System.out.println(Space.space);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     // Listar todas as disciplinas de um aluno
     public void disciplinasAluno(int codUsuario) throws IOException {
         AlunoDAO alunodao = new AlunoDAO();
@@ -118,7 +130,6 @@ public class Listar {
             System.out.println(Space.space);
         } catch (SQLException e) {
             System.out.println("Erro ao listar alunos da disciplina. Motivo: " + e.getMessage());
-            // Log the exception or handle it as appropriate for your application
         }
         return codigosAlunos;
     }

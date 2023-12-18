@@ -222,4 +222,35 @@ public class Cadastrar {
 
     }
 
+
+    public void cadastrarAlunoDisciplina() throws IOException {
+        Listar listar = new Listar();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Cadastro de aluno em uma disciplina...");
+
+        System.out.println("Selecione a disciplina que deseja cadastrar o aluno: ");
+        listar.disciplinasOfertadas();
+
+        System.out.print("Digite o código da disciplina: ");
+        int codDisciplina = scanner.nextInt();
+
+        System.out.println("Selecione o aluno que deseja cadastrar na disciplina: ");
+        listar.mostrarAlunosNaoCadastradosEmDisciplina();
+
+        System.out.print("Digite o código do aluno: ");
+
+        int codAluno = scanner.nextInt();
+
+        try {
+            DisciplinasDAO disciplinasDAO = new DisciplinasDAO();
+            disciplinasDAO.alunoDisciplina(codDisciplina, codAluno);
+            System.out.println(Space.space);
+            listar.mostrarAlunosNaoCadastradosEmDisciplina();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

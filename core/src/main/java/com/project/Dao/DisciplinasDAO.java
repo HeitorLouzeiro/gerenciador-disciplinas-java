@@ -73,6 +73,22 @@ public class DisciplinasDAO {
         statement.close();
     }
 
+    public void alunosNaoCadastradosEmDisciplina() throws SQLException {
+        Statement statement = connection.createStatement();
+
+        String sql = "SELECT * FROM usuario " +
+                "WHERE tipoUsuario = 'Aluno' AND codUsuario NOT IN (SELECT codUsuario FROM alunosDisciplinas)";
+
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        while (resultSet.next()) {
+            System.out.println("Código do aluno: " + resultSet.getInt("codUsuario") +
+                    " - Nome do aluno: " + resultSet.getString("nome"));
+        }
+
+        statement.close();
+    }   
+
     public List<Integer>  listarAlunosDisciplina(int codDisciplina) throws SQLException {
         List<Integer> codigosAlunos = new ArrayList<>();
         Statement statement = connection.createStatement();

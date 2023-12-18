@@ -98,7 +98,8 @@ public class IFPIDAO {
         ResultSet resultSet = statement.executeQuery(sql);
 
         while (resultSet.next()) {
-            System.out.println(resultSet.getString("nome")
+            System.out.println("Codigo do curso: " + resultSet.getInt("codDisciplina")  +  
+            (" Disciplina: ")+ resultSet.getString("nome")
             );
         }
     }
